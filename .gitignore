@@ -30,3 +30,7 @@
 /.idea/gitTest.iml
 /.idea/misc.xml
 /.idea/modules.xml
+/cmake-build-debug/CMakeFiles/gitTest.dir/main.c.obj
+/cmake-build-debug/.ninja_deps
+/cmake-build-debug/.ninja_log
+/cmake-build-debug/gitTest.exe
