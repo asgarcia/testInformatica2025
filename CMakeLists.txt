@@ -3,4 +3,4 @@ project(gitTest C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(gitTest main.c)
+add_executable(gitTest main.c TProducto.c)
