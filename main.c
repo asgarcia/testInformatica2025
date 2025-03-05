@@ -12,7 +12,7 @@ int main(void) {
 
     int numProductos=5;
     TProducto productos[numProductos];
-    strcpy(productos[0].des,"Patatas");
+  /*  strcpy(productos[0].des,"Patatas");
     productos[0].precio = 5;
     strcpy(productos[1].des,"Jamón");
     productos[1].precio = 10;
@@ -22,9 +22,12 @@ int main(void) {
     productos[3].precio = 1.2;
     strcpy(productos[4].des,"Ron");
     productos[4].precio = 50.0;
-
+*/
+    //mostrarProductos(productos,numProductos);
+    loadProductos("datos.txt",productos,numProductos);
     mostrarProductos(productos,numProductos);
-
     printf("Hola Alejandro!\n");
+
+    //saveProductos("datos.txt",productos,numProductos);
     return 0;
 }
