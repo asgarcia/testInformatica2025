@@ -24,10 +24,10 @@ int main(void) {
     productos[4].precio = 50.0;
 */
     //mostrarProductos(productos,numProductos);
-    loadProductos("../datos.txt",productos,numProductos);
-    mostrarProductos(productos,numProductos);
+    loadProductos("../datos.txt",productos);
+    mostrarProductos(productos,sizeof(productos)/sizeof(TProducto));
     printf("Hola Alejandro!\n");
 
-    saveProductos("../datos.txt",productos,numProductos);
+    //saveProductos("../datos.txt",productos,numProductos);
     return 0;
 }

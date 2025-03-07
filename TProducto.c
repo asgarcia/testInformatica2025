@@ -28,12 +28,14 @@ int saveProductos(const char * nameFile,TProducto *p, int numProductos){
 }
 
 
-int loadProductos(const char * nameFile,TProducto *p, int numProductos){
+int loadProductos(const char * nameFile,TProducto *p){
     FILE *f = fopen(nameFile,"r");
     if(f == NULL){
         return -1;
     }
     //char linea[250];
+    int numProductos;
+    fscanf(f,"%d\n",&numProductos);
     for(int i = 0; i < numProductos; i++) {
         fscanf(f,"%s\t %f",&p[i].des,&p[i].precio);
         //mostrarProductos(&p[i],1);

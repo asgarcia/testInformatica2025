@@ -14,5 +14,5 @@ typedef struct {
 
 void mostrarProductos(TProducto *p, int numProductos);
 int saveProductos(const char * nameFile,TProducto *p, int numProductos);
-int loadProductos(const char * nameFile,TProducto *p, int numProductos);
+int loadProductos(const char * nameFile,TProducto *p);
 #endif //TPRODUCTO_H
