@@ -29,5 +29,7 @@ int main(void) {
     printf("Hola Alejandro!\n");
 
     //saveProductos("../datos.txt",productos,numProductos);
+    system("pause");
+
     return 0;
 }
