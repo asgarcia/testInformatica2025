@@ -10,8 +10,9 @@ int main(void) {
     SetConsoleOutputCP(CP_UTF8);
 
 
-    int numProductos=5;
-    TProducto productos[numProductos];
+    int numProductos=0;
+    TProducto *productos=NULL;
+    //TProducto *productos1[6];             // cuidado no podemos liberar esta memoria.
   /*  strcpy(productos[0].des,"Patatas");
     productos[0].precio = 5;
     strcpy(productos[1].des,"Jamón");
@@ -24,8 +25,8 @@ int main(void) {
     productos[4].precio = 50.0;
 */
     //mostrarProductos(productos,numProductos);
-    loadProductos("../datos.txt",productos);
-    mostrarProductos(productos,sizeof(productos)/sizeof(TProducto));
+    numProductos=loadProductos("../datos.txt",&productos);
+    mostrarProductos(productos,numProductos);
     printf("Hola Alejandro!\n");
 
     //saveProductos("../datos.txt",productos,numProductos);

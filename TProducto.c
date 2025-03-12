@@ -4,6 +4,10 @@
 #include <stdio.h>
 #include "TProducto.h"
 
+#include <stdlib.h>
+
+#define ERROR_FICHERO (-1)
+#define ERROR_MEMORIA (-2)
 
 void mostrarProductos(TProducto *p, int numProductos) {
 
@@ -18,8 +22,9 @@ void mostrarProductos(TProducto *p, int numProductos) {
 int saveProductos(const char * nameFile,TProducto *p, int numProductos){
   FILE *f = fopen(nameFile,"w");
   if(f == NULL){
-    return -1;
+    return ERROR_FICHERO;
   }
+    fprintf("%d\n",numProductos);
   for(int i = 0; i < numProductos; i++) {
       fprintf(f,"%-50s \t  %6.2f \n", p[i].des,p[i].precio);
   }
@@ -27,20 +32,37 @@ int saveProductos(const char * nameFile,TProducto *p, int numProductos){
   return 0;
 }
 
-
-int loadProductos(const char * nameFile,TProducto *p){
+/**
+ * Funcion para leer los pruductos de un fichero.
+ *
+ * @param nameFile nombre del fichero
+ * @param p puntero a la estructura
+ * @return numero de productos
+ */
+int loadProductos(const char * nameFile,TProducto **p){
     FILE *f = fopen(nameFile,"r");
     if(f == NULL){
-        return -1;
+        return ERROR_FICHERO;
     }
     //char linea[250];
     int numProductos;
     fscanf(f,"%d\n",&numProductos);
+
+    if (*p!=NULL) {
+        free(p);
+    }
+    *p= (TProducto *)malloc(sizeof(TProducto)*numProductos);
+    if (*p == NULL) {
+        return ERROR_MEMORIA;
+    }
+    TProducto pTemp;
     for(int i = 0; i < numProductos; i++) {
-        fscanf(f,"%s\t %f",&p[i].des,&p[i].precio);
+        fscanf(f,"%s \t %f",&pTemp.des,&pTemp.precio);
+        //strcpy((char*) &p[i]->des,pTemp.des);
+        p[i]->precio = pTemp.precio;
         //mostrarProductos(&p[i],1);
         //printf("Linea %d %s\n",i,linea);
     }
     fclose(f);
-    return 0;
+    return numProductos;
 }
