@@ -28,7 +28,7 @@ int main(void) {
     numProductos=loadProductos("../datos.txt",&productos);
     mostrarProductos(productos,numProductos);
     printf("Hola Alejandro!\n");
-
+    free(productos);
     //saveProductos("../datos.txt",productos,numProductos);
     system("pause");
 

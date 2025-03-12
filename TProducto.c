@@ -13,7 +13,7 @@ void mostrarProductos(TProducto *p, int numProductos) {
 
     printf("0. Salir\n");
     for(int i = 0; i < numProductos; i++) {
-        printf("%d Producto: %-25s \t  %6.2f €\n", i+1, p[i].des,p[i].precio);
+        printf("%d Producto: %s \t %6.2f\n", i+1, p[i].des, p[i].precio);
     }
     printf("%d. borrar pantalla \n",numProductos+1);
 
@@ -24,7 +24,7 @@ int saveProductos(const char * nameFile,TProducto *p, int numProductos){
   if(f == NULL){
     return ERROR_FICHERO;
   }
-    fprintf("%d\n",numProductos);
+    fprintf(f,"%d\n",numProductos);
   for(int i = 0; i < numProductos; i++) {
       fprintf(f,"%-50s \t  %6.2f \n", p[i].des,p[i].precio);
   }
@@ -48,18 +48,19 @@ int loadProductos(const char * nameFile,TProducto **p){
     int numProductos;
     fscanf(f,"%d\n",&numProductos);
 
-    if (*p!=NULL) {
-        free(p);
+    if (*p != NULL) {
+        free(*p);
     }
-    *p= (TProducto *)malloc(sizeof(TProducto)*numProductos);
+    *p = (TProducto *) malloc(sizeof(TProducto) * numProductos);
     if (*p == NULL) {
         return ERROR_MEMORIA;
     }
     TProducto pTemp;
     for(int i = 0; i < numProductos; i++) {
-        fscanf(f,"%s \t %f",&pTemp.des,&pTemp.precio);
-        //strcpy((char*) &p[i]->des,pTemp.des);
-        p[i]->precio = pTemp.precio;
+        TProducto t;
+        fscanf(f,"%[^\t] %f\n",(*p)[i].des, &(*p)[i].precio);
+        //strcpy((*p)[i].des,t.des);
+        //(*p)[i].precio =t.precio;
         //mostrarProductos(&p[i],1);
         //printf("Linea %d %s\n",i,linea);
     }
