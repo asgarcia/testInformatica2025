@@ -30,7 +30,7 @@ int main(void) {
     printf("Hola Alejandro!\n");
     free(productos);
     //saveProductos("../datos.txt",productos,numProductos);
-    system("pause");
+    //system("pause");
 
     return 0;
 }
