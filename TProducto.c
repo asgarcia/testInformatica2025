@@ -5,6 +5,7 @@
 #include "TProducto.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 #define ERROR_FICHERO (-1)
 #define ERROR_MEMORIA (-2)
@@ -17,6 +18,17 @@ void mostrarProductos(TProducto *p, int numProductos) {
     }
     printf("%d. borrar pantalla \n",numProductos+1);
 
+}
+
+int saveProductosBin(const char *name,TProducto *p, int numProductos) {
+    FILE *f = fopen(name, "wb");
+    if (f==NULL) {
+        return ERROR_FICHERO;
+    }
+    fwrite(&numProductos,sizeof(int),1,f);
+    fwrite(p,sizeof(TProducto),numProductos,f);
+    fclose(f);
+    return 0;
 }
 
 int saveProductos(const char * nameFile,TProducto *p, int numProductos){
@@ -52,6 +64,9 @@ int loadProductos(const char * nameFile,TProducto **p){
         free(*p);
     }
     *p = (TProducto *) malloc(sizeof(TProducto) * numProductos);
+
+    memset((*p), 0, sizeof(TProducto) * numProductos);
+
     if (*p == NULL) {
         return ERROR_MEMORIA;
     }
